@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     /* RENDER GAME FIELD */
     let solution = getSolution();
-    // let solution = 'WATER';
+    solution = 'STAL';
     console.log('Solution: ' + solution);
 
     renderGameContainer(solution.length);
@@ -98,7 +98,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         function compare(guess, solution) {
-            let misplaced = [];
             let solutionTemp = solution.split("");
             
             for (let i = 0; i < solution.length; i++) {
@@ -119,28 +118,66 @@ window.addEventListener('DOMContentLoaded', () => {
                     targetCell.style.border = '2px solid green';
                     targetCell.style.color = 'white';
                     guessKey.style.backgroundColor = 'green';
-                }
-                else if (solution.indexOf(guessLetter) != -1) {
-                    if (solutionTemp.includes(guessLetter)) {
-                        misplaced.push(guessLetter);
-                    }
-                    targetCell.style.backgroundColor = '#ffdd00';
-                    targetCell.style.border = '2px solid #ffdd00';
-                    if (guessKey.style.backgroundColor != 'green') {
-                        guessKey.style.backgroundColor = '#ffdd00';
-                    }
-                }
-                else {
+                } else {
                     targetCell.style.backgroundColor = 'darkgray';
                     targetCell.style.border = '2px solid darkgray';
                     guessKey.style.backgroundColor = 'darkgray';
                 }
-            }
-            // for (let i = 0; i < misplaced.length; i++) {
-            //     console.log(misplaced[i]);
-            // }
-            console.log('Misplaced: ' + misplaced);
+            };
 
+            for (let i = 0; i < solution.length; i++) {
+                let guessLetter = guess.charAt(i);
+                let guessKey = document.getElementById(guessLetter);
+                let n = 0;
+                targetCell = document.getElementsByClassName('row')[r].children[i];
+
+                function countLetters(guess, solution) {
+                    let nGuess = 0;
+                    let nSol = 0;
+
+                    guess = guess.split("");
+                  
+                    guess.forEach((element) => {
+                      if (element === guessLetter) {
+                        nGuess ++;
+                      };
+                    });
+                    solution.forEach((element) => { 
+                      if (element === guessLetter) {
+                        nSol ++;
+                      };
+                    })
+                    console.log('nSol of ' + [i] + ': ' + nSol);
+                    console.log('nGuess of ' + [i] + ': ' + nGuess);
+                    n = nGuess - nSol;
+                    console.log('n of ' + [i] + ': ' + n);
+
+                }
+
+                function alterSolutionTemp() {
+                    delete solutionTemp[solution.indexOf(guessLetter)];
+                }
+
+                if (solutionTemp.indexOf(guessLetter) != -1) {
+                    countLetters(guess, solutionTemp);
+                    if (n <= 1) {
+                        alterSolutionTemp();
+                        console.log(solutionTemp);
+                        targetCell.style.backgroundColor = '#ffdd00';
+                        targetCell.style.border = '2px solid #ffdd00';
+                        if (guessKey.style.backgroundColor != 'green') {
+                            guessKey.style.backgroundColor = '#ffdd00';
+                        }
+                    } 
+                } 
+                // else {
+                //     if (targetCell.style.backgroundColor != 'green' &&guessKey.style.backgroundColor != 'green' &&            targetCell.style.backgroundColor != '#ffdd00' &&         guessKey.style.backgroundColor != '#ffdd00') {
+                //         targetCell.style.backgroundColor = 'darkgray';
+                //         targetCell.style.border = '2px solid darkgray';
+                //         guessKey.style.backgroundColor = 'darkgray';
+                //     }
+                // }
+            };
         }
     }
 
