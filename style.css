@@ -91,7 +91,7 @@ button {
 }
 
 .key {
-    background-color: lightgrey;
+    background-color: #d3d3d3;
     padding: 0.8rem 0;
     width: 1.6rem;
     /* min-width: 2.2rem; */

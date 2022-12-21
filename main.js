@@ -1,7 +1,7 @@
-import { returnWords, getSolution } from "./modules/words.js";
+import { getSolution } from "./modules/words.js";
 
 window.addEventListener('DOMContentLoaded', () => {
-    console.log(returnWords().length);
+    
     /* RENDER GAME FIELD */
     let solution = getSolution();
     console.log('Solution: ' + solution);
@@ -76,6 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
             if (c === solution.length) {
                 let gameContainer = document.getElementById('gameContainer');
                 guess = guess.join('');
+
                 compare(guess, solution);
                 if (guess === solution) {
                     setTimeout(() => {
@@ -111,9 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (guessLetter === solutionLetter) {
-                    alterSolutionTemp();
-                    console.log(solutionTemp);
-                    
+                    alterSolutionTemp();                    
                     targetCell.style.backgroundColor = 'green';
                     targetCell.style.border = '2px solid green';
                     targetCell.style.color = 'white';
@@ -147,11 +146,8 @@ window.addEventListener('DOMContentLoaded', () => {
                         nSol ++;
                       };
                     })
-                    console.log('nSol of ' + [i] + ': ' + nSol);
-                    console.log('nGuess of ' + [i] + ': ' + nGuess);
-                    n = nGuess - nSol;
-                    console.log('n of ' + [i] + ': ' + n);
 
+                    n = nGuess - nSol;
                 }
 
                 function alterSolutionTemp() {
