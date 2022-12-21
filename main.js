@@ -43,6 +43,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let c = 0;
         let targetCell = document.getElementsByClassName('row')[r].children[c];
         let guess = [];
+        const merryXmas = new Audio('merrychristmas.mp3');
 
         let winMessage = document.getElementById('winMessage');
         let loseMessage = document.getElementById('loseMessage');
@@ -76,10 +77,10 @@ window.addEventListener('DOMContentLoaded', () => {
             if (c === solution.length) {
                 let gameContainer = document.getElementById('gameContainer');
                 guess = guess.join('');
-
                 compare(guess, solution);
                 if (guess === solution) {
                     setTimeout(() => {
+                        merryXmas.play();
                         winMessage.style.display = 'block';
                         gameContainer.style.visibility = 'hidden';
                     }, 750);
