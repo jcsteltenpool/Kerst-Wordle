@@ -17,6 +17,10 @@ body {
     padding: 1rem;
 }
 
+main {
+    width: 100%;
+}
+
 h1, section {
     text-align: center;
     margin-bottom: 1.25rem;
@@ -81,9 +85,9 @@ button {
     font-size: 2rem;
 }
 
-.inputContainer {
+/* .inputContainer {
     width: 100%;
-}
+} */
 
 .inputRow {
     display: flex;
@@ -92,20 +96,16 @@ button {
 
 .key {
     background-color: #d3d3d3;
-    padding: 0.8rem 0;
-    width: 1.6rem;
-    /* min-width: 2.2rem; */
+    padding: 0.6rem 0;
+    width: 2rem;
     border-radius: 0.5rem;
     margin: 0.2rem;
     cursor: pointer;
     font-size: 1rem;
 }
+
 #enter,
 #backspace {
-    padding: 0.8rem 0.4rem;
+    padding: 0.6rem 0.4rem;
     width: auto;
 }
-
-/* .key:active {
-    background-color: darkgrey;
-} */
