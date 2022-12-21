@@ -1,11 +1,9 @@
-import { getSolution } from "./modules/words.js";
+import { returnWords, getSolution } from "./modules/words.js";
 
 window.addEventListener('DOMContentLoaded', () => {
-
-
+    console.log(returnWords().length);
     /* RENDER GAME FIELD */
     let solution = getSolution();
-    solution = 'STAL';
     console.log('Solution: ' + solution);
 
     renderGameContainer(solution.length);
@@ -83,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         winMessage.style.display = 'block';
                         gameContainer.style.visibility = 'hidden';
-                    }, 500);
+                    }, 1000);
                     enter.removeEventListener('click', checkGuess);
                 }
                 else if (r === 5 && c === solution.length && guess !== solution) {
@@ -99,6 +97,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
         function compare(guess, solution) {
             let solutionTemp = solution.split("");
+             
+            let results = [];
             
             for (let i = 0; i < solution.length; i++) {
                 let guessLetter = guess.charAt(i);
@@ -117,11 +117,11 @@ window.addEventListener('DOMContentLoaded', () => {
                     targetCell.style.backgroundColor = 'green';
                     targetCell.style.border = '2px solid green';
                     targetCell.style.color = 'white';
-                    guessKey.style.backgroundColor = 'green';
+                    results.push({value: guessLetter, color: 'green'});
                 } else {
-                    targetCell.style.backgroundColor = 'darkgray';
-                    targetCell.style.border = '2px solid darkgray';
-                    guessKey.style.backgroundColor = 'darkgray';
+                    targetCell.style.backgroundColor = '#717171';
+                    targetCell.style.border = '2px solid #717171';
+                    results.push({value: guessLetter, color: '#717171'});
                 }
             };
 
@@ -165,19 +165,21 @@ window.addEventListener('DOMContentLoaded', () => {
                         console.log(solutionTemp);
                         targetCell.style.backgroundColor = '#ffdd00';
                         targetCell.style.border = '2px solid #ffdd00';
-                        if (guessKey.style.backgroundColor != 'green') {
-                            guessKey.style.backgroundColor = '#ffdd00';
-                        }
+                        results.push({value: guessLetter, color: '#ffdd00'});
                     } 
                 } 
-                // else {
-                //     if (targetCell.style.backgroundColor != 'green' &&guessKey.style.backgroundColor != 'green' &&            targetCell.style.backgroundColor != '#ffdd00' &&         guessKey.style.backgroundColor != '#ffdd00') {
-                //         targetCell.style.backgroundColor = 'darkgray';
-                //         targetCell.style.border = '2px solid darkgray';
-                //         guessKey.style.backgroundColor = 'darkgray';
-                //     }
-                // }
             };
+            
+            for (let result in results) {
+                const value = results[result].value;
+                const color = results[result].color; 
+                let guessKey = document.getElementById(value);
+                if (guessKey.style.backgroundColor != 'green') {
+                    guessKey.style.backgroundColor = color;                   
+                } else {
+                    guessKey.style.backgroundColor = 'green';
+                }                  
+            }
         }
     }
 
