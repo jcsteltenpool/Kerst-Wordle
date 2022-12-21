@@ -82,7 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         winMessage.style.display = 'block';
                         gameContainer.style.visibility = 'hidden';
-                    }, 1000);
+                    }, 750);
                     enter.removeEventListener('click', checkGuess);
                 }
                 else if (r === 5 && c === solution.length && guess !== solution) {
@@ -112,7 +112,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
 
                 if (guessLetter === solutionLetter) {
-                    alterSolutionTemp();                    
+                    alterSolutionTemp(); 
+                    console.log(solutionTemp);
+                  
                     targetCell.style.backgroundColor = 'green';
                     targetCell.style.border = '2px solid green';
                     targetCell.style.color = 'white';
@@ -129,7 +131,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 let guessKey = document.getElementById(guessLetter);
                 let n = 0;
                 targetCell = document.getElementsByClassName('row')[r].children[i];
-
+                
                 function countLetters(guess, solution) {
                     let nGuess = 0;
                     let nSol = 0;
@@ -146,8 +148,10 @@ window.addEventListener('DOMContentLoaded', () => {
                         nSol ++;
                       };
                     })
-
+                    console.log('nguess ' + nGuess);
+                    console.log('nsol ' + nSol)
                     n = nGuess - nSol;
+                    console.log('n '+ n);
                 }
 
                 function alterSolutionTemp() {
@@ -159,9 +163,11 @@ window.addEventListener('DOMContentLoaded', () => {
                     if (n <= 1) {
                         alterSolutionTemp();
                         console.log(solutionTemp);
-                        targetCell.style.backgroundColor = '#ffdd00';
-                        targetCell.style.border = '2px solid #ffdd00';
-                        results.push({value: guessLetter, color: '#ffdd00'});
+                        if (targetCell.style.backgroundColor != 'green') {
+                            targetCell.style.backgroundColor = '#ffdd00';
+                            targetCell.style.border = '2px solid #ffdd00';
+                            results.push({value: guessLetter, color: '#ffdd00'});
+                        }
                     } 
                 } 
             };

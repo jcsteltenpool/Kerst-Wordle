@@ -42,10 +42,10 @@ const words = [
     'WENSEN',
     'ETEN',
     'CADEAU',
-    'KIND',
+    'KINDJE',
     'VREDE',
     'KLOKJE',
-    'KLING'
+    'HEMEL',
 ];
 
 const getSolution = () => {
