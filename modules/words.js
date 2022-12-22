@@ -46,6 +46,14 @@ const words = [
     'VREDE',
     'KLOKJE',
     'HEMEL',
+    'SFEER',
+    'ZINGEN',
+    'FROSTY',
+    'KOEKJE',
+    'STRIK',
+    'HAARD',
+    'FILMS',
+    'VIEREN'
 ];
 
 const getSolution = () => {
