@@ -53,7 +53,9 @@ const words = [
     'STRIK',
     'HAARD',
     'FILMS',
-    'VIEREN'
+    'VIEREN',
+    'GLORIA',
+    'TRUI'
 ];
 
 const getSolution = () => {
